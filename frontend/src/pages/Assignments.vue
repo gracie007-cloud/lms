@@ -140,9 +140,6 @@ const assignmentFilter = computed(() => {
 	if (typeFilter.value) {
 		filters.type = typeFilter.value
 	}
-	if (!user.data?.is_moderator) {
-		filters.owner = user.data?.email
-	}
 	return filters
 })
 
@@ -203,7 +200,7 @@ const assignmentTypes = computed(() => {
 
 const breadcrumbs = computed(() => [
 	{
-		label: 'Assignments',
+		label: __('Assignments'),
 		route: { name: 'Assignments' },
 	},
 ])
