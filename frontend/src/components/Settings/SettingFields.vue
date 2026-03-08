@@ -1,5 +1,5 @@
 <template>
-	<div class="mb-5 divide-y overflow-y-auto">
+	<div class="mb-5 divide-y divide-outline-gray-modals overflow-y-auto">
 		<div v-for="(section, index) in sections" class="py-5">
 			<div v-if="section.label" class="font-semibold text-ink-gray-9 mb-4">
 				{{ section.label }}
@@ -20,6 +20,7 @@
 							:doctype="field.doctype"
 							:label="__(field.label)"
 							:description="__(field.description)"
+							:required="field.reqd"
 						/>
 
 						<div v-else-if="field.type == 'Code'">
@@ -115,6 +116,7 @@
 							:rows="field.rows"
 							:options="field.options"
 							:description="field.description"
+							:required="field.reqd"
 							placeholder=""
 						/>
 					</div>

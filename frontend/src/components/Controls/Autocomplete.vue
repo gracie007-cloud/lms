@@ -16,7 +16,12 @@
 							<button
 								class="flex w-full items-center justify-between focus:outline-none"
 								:class="inputClasses"
-								@click="() => togglePopover()"
+								@click="
+									() => {
+										showOptions = !showOptions
+										togglePopover()
+									}
+								"
 								:disabled="attrs.readonly"
 							>
 								<div class="flex items-center w-[90%]">
@@ -102,7 +107,7 @@
 												<div class="flex flex-col gap-1 p-1">
 													<div class="text-base font-medium text-ink-gray-8">
 														{{
-															option.value == option.label
+															option.value == option.label && option.description
 																? option.description
 																: option.label
 														}}
@@ -119,7 +124,7 @@
 									v-if="groups.length == 0"
 									class="mt-1.5 rounded-md px-2.5 py-1.5 text-base text-ink-gray-5"
 								>
-									No results found
+									{{ __('No results found') }}
 								</li>
 							</ComboboxOptions>
 							<div v-if="slots.footer" class="border-t p-1.5 pb-0.5">
@@ -283,7 +288,7 @@ const inputClasses = computed(() => {
 	let variant = props.disabled ? 'disabled' : props.variant
 	let variantClasses = {
 		subtle:
-			'border border-gray-100 bg-surface-gray-2 placeholder-ink-gray-4 hover:border-outline-gray-modals hover:bg-surface-gray-3 focus:bg-surface-white focus:border-outline-gray-4 focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-outline-gray-3',
+			'border border-outline-gray-modals bg-surface-gray-2 placeholder-ink-gray-4 hover:border-outline-gray-modals hover:bg-surface-gray-3 focus:bg-surface-white focus:border-outline-gray-4 focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-outline-gray-3',
 		outline:
 			'border border-outline-gray-2 bg-surface-white placeholder-ink-gray-4 hover:border-outline-gray-3 hover:shadow-sm focus:bg-surface-white focus:border-outline-gray-4 focus:shadow-sm focus:ring-0 focus-visible:ring-2 focus-visible:ring-outline-gray-3',
 		disabled: [

@@ -11,7 +11,6 @@
 			:size="attrs.size || 'sm'"
 			:variant="attrs.variant"
 			:placeholder="attrs.placeholder"
-			:filterable="false"
 			:readonly="attrs.readonly"
 		>
 			<template #target="{ open, togglePopover }">
@@ -97,7 +96,7 @@ const value = computed({
 	set: (val) => {
 		return (
 			val?.value &&
-			emit(valuePropPassed.value ? 'change' : 'update:modelValue', val?.value)
+			emit(valuePropPassed.value ? 'change' : 'update:modelValue', val.value)
 		)
 	},
 })
